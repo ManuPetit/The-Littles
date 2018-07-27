@@ -1,0 +1,122 @@
+<html>
+
+http://webmove.org/2009/11/03/demo-how-to-use-jquery-animation-effect-for-moving-the-clouds-in-your-sky-in-5-steps.html
+<HEAD>
+<script type="text/javascript">
+var cloudMoved = false;
+var cloud2Moved = false;
+var cloud3Moved = false;
+
+$(init);
+
+function init()
+{
+	cloudMove();
+	cloud2Move();
+	cloud3Move();
+}
+
+function cloudMove()
+{
+	if (!cloudMoved)
+	{
+		$("#cloud")
+			.css("left", $("#cloud").offset().left)
+	}
+
+	$("#cloud")
+		.animate(
+			{
+				left: $("#sky").width()
+			},
+			cloudMoved ? 180000 : 150000,
+			"linear",
+			function()
+			{
+				$(this)
+					.css("left", -parseInt($(this).css("width")))
+				cloudMoved = true;
+				cloudMove();
+			}
+		)
+}
+
+function cloud2Move()
+{
+	if (!cloud2Moved)
+	{
+		$("#cloud2")
+			.css("left", $("#cloud2").offset().left)
+	}
+	$("#cloud2")
+		.animate(
+			{
+				left: $("#sky").width()
+			},
+			cloud2Moved ? 120000 : 60000,
+			"linear",
+			function()
+			{
+				$(this)
+					.css("left", -parseInt($(this).css("width")))
+				cloud2Moved = true;
+				cloud2Move();
+			}
+		)
+}
+
+function cloud3Move()
+{
+	if (!cloud3Moved)
+	{
+		$("#cloud3")
+			.css("left", $("#cloud3").offset().left)
+	}
+	$("#cloud3")
+		.animate(
+			{
+				left: $("#sky").width()
+			},
+			cloud3Moved ? 400000 : 150000,
+			"linear",
+			function()
+			{
+				$(this)
+					.css("left", -parseInt($(this).css("width")))
+				cloud3Moved = true;
+				cloud3Move();
+			}
+		)
+}
+</script>
+<style type="text/css">
+#cloud {
+	background-image:url(images/startest.gif);
+	width:20px;
+	height:20px;
+}
+#cloud2{
+	background-image:url(images/starttest2.gif);
+	width:30px;
+	height:30px;
+}
+#cloud3 {
+	background-image:url(images/starttest3.gif);
+	width:30px;
+	height:30px;
+}
+</style>
+
+</HEAD>
+
+<body bgcolor="#000000">
+<div id="sky">
+  <div id="cloud">
+  </div> <!-- END #cloud -->
+  <div id="cloud2">
+  </div> <!-- END #cloud2 -->
+  <div id="cloud3">
+  </div> <!-- END #cloud3 -->
+</div> <!-- END #sky -->
+</body>
+</html>
